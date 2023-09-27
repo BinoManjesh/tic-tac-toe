@@ -98,7 +98,7 @@ function Game() {
     
     function playMove(row, col) {
         if (gameBoard.isOccupied(row, col) || gameOver) {
-            return;
+            return "invalid";
         }
         gameBoard.doMove(row, col, currentPlayer);
 
@@ -114,5 +114,42 @@ function Game() {
         currentPlayer = currentPlayer === 1 ? 2 : 1;
     };
 
-    return {playMove};
+    function getCurrentPlayer() {return currentPlayer};
+
+    return {playMove, getCurrentPlayer};
 }
+
+function DOMController() {
+    let game = Game();
+    const gameBoard = document.querySelector("div.game-board");
+    const buttonGrid = Array(3);
+    for (let i = 0; i < 3; ++i) {
+        buttonGrid[i] = Array(3);
+    }
+    for (let i = 0; i < 9; ++i) {
+        const button = document.createElement("button")
+        button.className = "empty cell";
+        button.dataset.row = Math.floor(i/3);
+        button.dataset.col = i%3;
+        buttonGrid[button.dataset.row][button.dataset.col] = button;
+        gameBoard.appendChild(button);
+    }
+
+    function onClick(e) {
+        if (!e.target.classList.contains("cell")) {
+            return;
+        }
+        const row = e.target.dataset.row;
+        const col = e.target.dataset.col;
+        const currentPlayer = game.getCurrentPlayer();
+        const result = game.playMove(row, col);
+        if (result === "invalid") {
+            return;
+        }
+        buttonGrid[row][col].className =`player-${currentPlayer} cell`;
+    }
+
+    gameBoard.addEventListener("click", onClick);
+}
+
+DOMController();
