@@ -105,10 +105,7 @@ function Game() {
         const state = gameBoard.getState();
         if (state) {
             gameOver = true;
-            if (state === 'tie') {
-                return state;
-            }
-            return currentPlayer;
+            return state;
         }
 
         currentPlayer = currentPlayer === 1 ? 2 : 1;
@@ -122,6 +119,7 @@ function Game() {
 function DOMController() {
     let game = Game();
     const gameBoard = document.querySelector("div.game-board");
+    const resultP = document.querySelector("p.result");
     const buttonGrid = Array(3);
     for (let i = 0; i < 3; ++i) {
         buttonGrid[i] = Array(3);
@@ -147,6 +145,14 @@ function DOMController() {
             return;
         }
         buttonGrid[row][col].className =`player-${currentPlayer} cell`;
+        if (result) {
+            if (result === "tie") {
+                resultP.textContent = "It's a Tie!";
+            } else {
+                resultP.textContent = `Player ${currentPlayer} wins!`;
+            }
+            resultP.removeAttribute("hidden");  
+        }
     }
 
     gameBoard.addEventListener("click", onClick);
