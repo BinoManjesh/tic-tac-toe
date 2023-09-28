@@ -156,6 +156,17 @@ function DOMController() {
     }
 
     gameBoard.addEventListener("click", onClick);
+
+    function reset() {
+        game = Game();
+        for (const row of buttonGrid) {
+            for (const button of row) {
+                button.className = "empty cell";
+            }
+        }
+        resultP.setAttribute("hidden", "");
+    }
+    document.querySelector("button.reset").addEventListener("click", reset);
 }
 
 DOMController();
