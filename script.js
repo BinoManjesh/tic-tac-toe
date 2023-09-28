@@ -69,9 +69,6 @@ function GameBoard() {
     }
 
     function getState () {
-        if (isFull()) {
-            return "tie";
-        }
         if (checkDiag1() || checkDiag2()) {
             return "win";
         }
@@ -79,6 +76,9 @@ function GameBoard() {
             if (checkRow(i) || checkCol(i)) {
                 return "win";
             }
+        }
+        if (isFull()) {
+            return "tie";
         }
     }
 
