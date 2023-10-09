@@ -7,12 +7,16 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <input type="text" id="player1" placeholder="Player 1 Name...">
-    <input type="text" id="player2" placeholder="Player 2 Name...">
-    <div class="game-board">
+    <div class="container">
+      <div class="hor-flex">
+        <input type="text" id="player1" placeholder="Player 1 Name...">
+        <button class="reset">Reset</button>
+        <input type="text" id="player2" placeholder="Player 2 Name...">
+      </div>
+      <div class="game-board">
       
+      </div>
+      <p hidden class="result"></p>
     </div>
-    <p hidden class="result"></p>
-    <button class="reset">Reset</button>
   </body>
 </html>
