@@ -120,6 +120,8 @@ function DOMController() {
     let game = Game();
     const gameBoard = document.querySelector("div.game-board");
     const resultP = document.querySelector("p.result");
+    const playerInputs = [document.querySelector("#player1"),
+        document.querySelector("#player2")];
     const buttonGrid = Array(3);
     for (let i = 0; i < 3; ++i) {
         buttonGrid[i] = Array(3);
@@ -149,7 +151,9 @@ function DOMController() {
             if (result === "tie") {
                 resultP.textContent = "It's a Tie!";
             } else {
-                resultP.textContent = `Player ${currentPlayer} wins!`;
+                const playerName = playerInputs[currentPlayer-1].value ||
+                    `Player ${currentPlayer}`;
+                resultP.textContent = `${playerName} wins!`;
             }
             resultP.removeAttribute("hidden");  
         }
