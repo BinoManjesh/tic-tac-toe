@@ -1,6 +1,9 @@
 :root {
     --bg-color: #323437;
     --main-color: #e2b714;
+    font-size: x-large;
+    font-family: Roboto;
+    color: white;
 }
 
 body {
@@ -17,11 +20,25 @@ div.container {
 div.hor-flex {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 div.hor-flex > input {
     flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    border-bottom: #696969 solid 2px;
+    color: inherit;
+    font-size: inherit;
+    text-align: center;
+    min-width: 0;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+input:focus {
+    outline: #696969 solid 2px;
+    outline-offset: 1px;
 }
 
 div.game-board {
@@ -33,6 +50,16 @@ div.game-board {
     background-size: 100% 100%;
     gap: 5%;
     padding: 2.5%;
+}
+
+button.reset {
+    padding: 0;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    background-image: url("images/reset.svg");
+    background-size: 100% 100%;
 }
 
 button.cell {
@@ -51,4 +78,8 @@ button.player-1.cell {
 
 button.player-2.cell {
     background-image: url("images/o.svg");
+}
+
+p.result {
+    text-align: center;
 }
